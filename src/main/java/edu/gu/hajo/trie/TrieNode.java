@@ -65,15 +65,14 @@ public class TrieNode {
     }
     
     
-    public void getChains(List<String> chains, StringBuilder chainStart) {
-        chainStart.append(this.value);
+    public void getChains(List<String> chains) {
         
         if (this.end) {
-            chains.add(chainStart.toString());
+            chains.add(getWord());
         }
         
         for (TrieNode child : children) {
-            child.getChains(chains, chainStart);
+            child.getChains(chains);
         }
     }
     
@@ -89,7 +88,7 @@ public class TrieNode {
     // Possible good for debug
     @Override
     public String toString() {
-        return "Replace with better data";  // TODO 
+        return getWord();  // TODO 
     }
 
 }

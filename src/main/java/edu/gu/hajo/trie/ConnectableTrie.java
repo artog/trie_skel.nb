@@ -52,22 +52,20 @@ public class ConnectableTrie implements IConnectableTrie {
     public List<String> getValues(String key) {
         List<String> values = new ArrayList<>();
         
-        if (contains(key)) {
-            
-            TrieNode pos = root;
-            for (char c : key.toCharArray()) {
-                TrieNode tmp = pos.getChild(c);
-                if (tmp != null ) {
-                    // Char found, check those child in next iteration
-                    pos = tmp;
-                } else {
-                    // Char not found among childs
-                    return values;
-                }
+        TrieNode pos = root;
+        for (char c : key.toCharArray()) {
+            TrieNode tmp = pos.getChild(c);
+            if (tmp != null ) {
+                // Char found, check those child in next iteration
+                pos = tmp;
+            } else {
+                // Char not found among childs
+                return values;
             }
-            for (TrieNode peer : pos.peers) {
-                values.add(peer.getWord());
-            }
+        }
+        
+        for (TrieNode peer : pos.peers) {
+            values.add(peer.getWord());
         }
         
         return values;
@@ -88,7 +86,7 @@ public class ConnectableTrie implements IConnectableTrie {
             }
         }
         
-        pos.getChains(keys, new StringBuilder(prefix));
+        pos.getChains(keys);
         
         
         return keys;

@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class TestConnectableTrie {
+public class ConnectableTrieTest {
 
     // ------- Testing non connected trie ------------
     @Test(expected = NullPointerException.class)
